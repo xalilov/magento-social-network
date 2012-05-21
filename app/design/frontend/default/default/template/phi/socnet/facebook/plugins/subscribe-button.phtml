@@ -1,0 +1,22 @@
+<div class="socnet subscribe-button">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div class="fb-subscribe"
+	data-href="<?php echo $this->getCurrentUrl();?>"
+	data-layout="<?php echo $this->getFbLayout();?>"
+	data-show-faces="<?php echo $this->getShowFaces();?>"
+	data-font="<?php echo $this->getFont();?>"
+	data-colorscheme="<?php echo $this->getScheme();?>"
+	data-width="<?php echo $this->getWidth();?>"></div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:subscribe href="<?php echo $this->getCurrentUrl();?>"
+	layout="<?php echo $this->getFbLayout();?>"
+	show-faces="<?php echo $this->getShowFaces();?>"
+	font="<?php echo $this->getFont();?>"
+	colorscheme="<?php echo $this->getScheme();?>"
+	width="<?php echo $this->getWidth();?>">
+</fb:subscribe>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

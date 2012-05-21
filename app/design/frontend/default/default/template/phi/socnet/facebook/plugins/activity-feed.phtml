@@ -1,0 +1,40 @@
+<div class="socnet activity-feed">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<div class="fb-activity"
+    data-width="<?php echo $this->getWidth()?>"
+	data-height="<?php echo $this->getHeight()?>"
+	data-header="<?php echo $this->getShowHeader()?>"
+	data-colorscheme="<?php echo $this->getScheme()?>"
+	data-linktarget="<?php echo $this->getLinkTarget()?>"
+	data-border-color="<?php echo $this->getBorderColor()?>"
+	data-font="<?php echo $this->getFont()?>"
+	data-filter="<?php echo $this->getShowRecomendations()?>"
+	data-site="<?php echo $this->getCurrentUrl()?>"
+	<?php if($this->getShowReferer()):?>
+	    data-ref="<?php echo $this->getRefererParameter()?>"
+	<?php endif;?>
+	<?php if($this->getShowFilters()):?>
+	    data-ref="<?php echo $this->getFilters()?>"
+	<?php endif;?>
+	data-recommendations="<?php echo $this->getShowRecomendations()?>">
+</fb:activity>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:activity width="<?php echo $this->getWidth()?>"
+	height="<?php echo $this->getHeight()?>"
+	header="<?php echo $this->getShowHeader()?>"
+	colorscheme="<?php echo $this->getScheme()?>"
+	linktarget="<?php echo $this->getLinkTarget()?>"
+	border-color="<?php echo $this->getBorderColor()?>"
+	font="<?php echo $this->getFont()?>"
+	filter="<?php echo $this->getShowRecomendations()?>"
+	site="<?php echo $this->getCurrentUrl()?>"
+	<?php if($this->getShowReferer()):?>
+	ref="<?php echo $this->getRefererParameter()?>" <?php endif;?>
+	<?php if($this->getShowFilters()):?>
+	ref="<?php echo $this->getFilters()?>" <?php endif;?>
+	recommendations="<?php echo $this->getShowRecomendations()?>">
+</fb:activity>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

@@ -1,0 +1,15 @@
+tables:
+  socnet/plugin:
+    - plugin_id: 99
+      key: "a_plugin_key"
+      network_id: 1
+      title: "A Plugin"
+      description: "A Plugin for test"
+      status: 1
+      
+  socnet/network:
+    - network_id: 1
+      key: "a_network_key"
+      description: "just for testing"
+      status: '1'
+   

@@ -1,0 +1,17 @@
+<div class="socnet registration">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:registration fields='<?php echo $this->getFields()?>'
+	redirect-uri="<?php echo $this->getRedirectUrl()?>"
+	scrolling="auto"
+	frameborder="no"
+	style="border:none"
+	allowTransparency="true"
+	height="600"
+	width="<?php echo $this->getWidth();?>">
+</fb:registration>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

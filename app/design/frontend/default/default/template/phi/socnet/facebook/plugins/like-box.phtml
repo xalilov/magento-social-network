@@ -1,0 +1,28 @@
+<div class="socnet like-box">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div
+	class="fb-like-box" data-href="<?php echo $this->getCurrentUrl()?>"
+	data-width="<?php echo $this->getWidth();?>"
+	data-height="<?php echo $this->getHeight();?>"
+	data-colorscheme="<?php echo $this->getScheme();?>"
+	data-show-faces="<?php echo $this->getShowFaces();?>"
+	data-border-color="<?php echo $this->getBorderColor();?>"
+	data-stream="<?php echo $this->getStream();?>"
+	<?php if ($this->getShowWall()):?> data-force-wall="true"
+	<?php endif;?> data-header="<?php echo $this->getShowHeader();?>"></div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:like-box href="<?php echo $this->getCurrentUrl()?>"
+	width="<?php echo $this->getWidth();?>"
+	height="<?php echo $this->getHeight();?>"
+	colorscheme="<?php echo $this->getScheme();?>"
+	show-faces="<?php echo $this->getShowFaces();?>"
+	border-color="<?php echo $this->getBorderColor();?>"
+	stream="<?php echo $this->getStream();?>"
+	<?php if ($this->getForceWall()):?> force-wall="true" <?php endif;?>
+	header="<?php echo $this->getShowHeader();?>">
+</fb:like-box>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

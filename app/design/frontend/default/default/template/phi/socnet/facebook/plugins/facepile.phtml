@@ -1,0 +1,26 @@
+<div class="socnet facepile">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div
+	class="fb-facepile" data-href="<?php echo $this->getCurrentUrl()?>"
+	<?php if($this->getShowActions()): ?>
+	data-action="<?php echo $this->getActions()?>"
+	<?php endif; ?>
+	data-size="<?php echo $this->getSize()?>"
+	data-max-rows="<?php echo $this->getMaxRows()?>"
+	data-width="<?php echo $this->getWidth()?>"
+	data-colorscheme="<?php echo $this->getScheme()?>"></div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:facepile href="<?php echo $this->getCurrentUrl()?>"
+	<?php if($this->getShowActions()): ?>
+	action="<?php echo $this->getActions()?>"
+	<?php endif; ?>
+	size="<?php echo $this->getSize()?>"
+	max-rows="<?php echo $this->getMaxRows()?>"
+	width="<?php echo $this->getWidth()?>"
+	colorscheme="<?php echo $this->getScheme()?>">
+</fb:facepile>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

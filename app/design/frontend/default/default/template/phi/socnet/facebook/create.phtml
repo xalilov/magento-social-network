@@ -1,0 +1,75 @@
+<?php
+    $protocol = 'http';
+    $secure = false;
+    if(Mage::app()->getStore()->isCurrentlySecure()) {
+        $protocol = 'https';
+        $secure = true;
+    }
+?>
+
+<div id="fb-root"></div>
+<script>
+Ajax.Responders.register({
+	  onCreate: function(response) {
+	    if (response.request.isSameOrigin())
+	      return;
+	    var t = response.transport;
+	    t.setRequestHeader = t.setRequestHeader.wrap(function(original, k, v) {
+	      if (/^(accept|accept-language|content-language)$/i.test(k))
+	        return original(k, v);
+	      if (/^content-type$/i.test(k) &&
+	          /^(application\/x-www-form-urlencoded|multipart\/form-data|text\/plain)(;.+)?$/i.test(v))
+	        return original(k, v);
+	      return;
+	    });
+	  }
+	});
+
+window.fbAsyncInit = function() {
+   FB.Network = "<?php echo Phi_Socnet_Model_Network::FACEBOOK_NETWORK_KEY ?>";
+   FB.init({
+    appId      : <?php echo $this->getAppId() ?>, // App ID
+    status     : true, // check login status
+    cookie     : true, // enable cookies to allow the server to access the session
+    xfbml      : true,  // parse XFBML
+    channelUrl : "<?php echo trim(Mage::getBaseUrl(
+                Mage_Core_Model_Store::URL_TYPE_LINK, $secure),'/').'/'.
+                Phi_Socnet_Helper_Data::FACEBOOK_CHANNEL ?>"
+  });
+
+  FB.Event.subscribe('auth.statusChange', function(response) {
+  if(response.status == "connected") {
+		  var url = '/socnet/index/getuser';
+		  var social_id = response.authResponse.userID;
+		  new Ajax.Request(url, {
+			  method: 'get',
+			  parameters: "social_id="+social_id,
+			  onSuccess: function(transport) {
+				  var loggedin = transport.responseJSON.loggedin;
+				  var referer = transport.responseJSON.referer;
+				  if(!loggedin) {
+    				  var loginPostUrl = "<?php echo Mage::helper('customer')
+    				      ->getLoginPostUrl(); ?>";
+    				  new Ajax.Request(loginPostUrl, {
+    					  method: 'post',
+    					  parameters: "social_id="+social_id+"&network="+FB.Network,
+    					  onSuccess: function(transport) {
+    					      window.location = referer;
+    					  }
+    				  });
+				  }
+			  }
+		  });
+	  }
+//	  alert('The status of the session is: ' + response.status);
+  });
+};
+
+// Load the SDK Asynchronously
+(function(d){
+  var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+  js = d.createElement('script'); js.id = id; js.async = true;
+  js.src = "<?php echo $protocol ?>://connect.facebook.net/<?php echo $this->getAppLang(); ?>/all.js";
+  d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
+</script>

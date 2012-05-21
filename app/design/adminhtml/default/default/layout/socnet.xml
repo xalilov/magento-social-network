@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0" >
+    <socnet_adminhtml_facebook_plugin_index>
+        <reference name="content" >
+            <block name="phi.fb.plugin"
+                type="socnet/adminhtml_facebook_plugin_container" />
+        </reference>
+    </socnet_adminhtml_facebook_plugin_index>
+</layout>

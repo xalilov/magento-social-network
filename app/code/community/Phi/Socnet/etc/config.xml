@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<!--
+     /** 
+      * @category Phi 
+      * @package Phi_Socnet 
+      * @author Rodrigo Cervone <chervox@gmail.com>
+      * 
+      *	@license http://opensource.org/licenses/osl-3.0.php Open Software License OSL 3.0) 
+      */
+-->
+<config>
+    <modules>
+        <Phi_Socnet>
+            <version>0.1.1</version>
+        </Phi_Socnet>
+    </modules>
+    <frontend>
+        <routers>
+            <socnet>
+                <use>standard</use>
+                <args>
+                    <module>Phi_Socnet</module>
+                    <frontName>socnet</frontName>
+                </args>
+            </socnet>
+            <customer>
+                <args>
+                    <modules>
+                        <socnet before="Mage_Customer">Phi_Socnet</socnet>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+        <layout>
+            <updates>
+                <socnet>
+                    <file>socnet.xml</file>
+                </socnet>
+            </updates>
+       </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <socnet>
+                <use>admin</use>
+                <args>
+                    <module>Phi_Socnet</module>
+                    <frontName>socnet</frontName>
+                </args>
+            </socnet>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <phi_socnet translate="title" >
+                                            <title>Social Netkwork</title>
+                                            <sort_order>100</sort_order>
+                                        </phi_socnet>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+                <admin>
+                    <children>
+                        <phi>
+                            <title>Phi</title>
+                            <children>
+                                <socnet>
+                                    <title>Social Networking</title>
+                                    <children>
+                                        <facebook module="socnet" translate="title" >
+                                            <title>Facebook Plugins</title>
+                                            <sort_order>101</sort_order>
+                                        </facebook>
+                                    </children>
+                                </socnet>
+                            </children>
+                        </phi>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <phi>
+                <title>Phi</title>
+                <children>
+                    <socnet translate="title" >
+                        <title>Social Networking</title>
+                        <children>
+                            <facebook module="socnet" translate="title" >
+                                <title>Facebook Plugins</title>
+                                <action>socnet/adminhtml_facebook_plugin</action>
+                            </facebook>
+                        </children>
+                    </socnet>
+                </children>
+            </phi>
+        </menu>
+        <layout>
+            <updates>
+                <socnet>
+                    <file>socnet.xml</file>
+                </socnet>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <page>
+                <rewrite>
+                    <html>Phi_Socnet_Block_Page_Html</html>
+                </rewrite>
+            </page>
+            <socnet>
+                <class>Phi_Socnet_Block</class>
+            </socnet>
+            <customer>
+                <rewrite>
+                    <form_register>Phi_Socnet_Block_Customer_Form_Register</form_register>
+                </rewrite>
+            </customer>
+        </blocks>
+
+        <helpers>
+            <socnet>
+                <class>Phi_Socnet_Helper</class>
+            </socnet>
+        </helpers>
+
+        <models>
+            <core>
+                <rewrite>
+                    <layout>Phi_Socnet_Model_Layout</layout>
+                </rewrite>
+            </core>
+            <socnet>
+                <class>Phi_Socnet_Model</class>
+                <resourceModel>socnet_mysql4</resourceModel>
+            </socnet>
+
+            <socnet_mysql4>
+                <class>Phi_Socnet_Model_Mysql4</class>
+                <entities>
+                    <plugin>
+                        <table>phi_socnet_plugin</table>
+                    </plugin>
+                    <attribute>
+                        <table>phi_socnet_attribute</table>
+                    </attribute>
+                    <plugin_attribute_value>
+                        <table>phi_socnet_attribute_value</table>
+                    </plugin_attribute_value>
+                    <socialcustomer>
+                        <table>phi_socnet_social_customer</table>
+                    </socialcustomer>
+                    <network>
+                        <table>phi_socnet_network</table>
+                    </network>
+                </entities>
+            </socnet_mysql4>
+        </models>
+        <resources>
+            <socnet_setup>
+                <setup>
+                    <module>Phi_Socnet</module>
+                </setup>
+                <connection>
+                    <use>core_setup1</use>
+                </connection>
+            </socnet_setup>
+            <socnet_write>
+                <connection>
+                    <use>core_write2</use>
+                </connection>
+            </socnet_write>
+            <socnet_read>
+                <connection>
+                    <use>core_read3</use>
+                </connection>
+            </socnet_read>
+        </resources>
+		<events>
+	        <controller_front_init_routers>
+	            <observers>
+	                <phi_socnet_router>
+	                    <class>Phi_Socnet_Controller_Router</class>
+	                    <method>initControllerRouters</method>
+	                </phi_socnet_router>
+	            </observers>
+	        </controller_front_init_routers>
+	        <phi_socnet_event_plugin_loaded>
+                <observers>
+                    <phi_socnet>
+                        <class>Phi_Socnet_Model_Observer</class>
+                        <method>handler</method>
+                    </phi_socnet>
+                </observers>	            
+	        </phi_socnet_event_plugin_loaded>		
+		</events>
+    </global>
+</config>

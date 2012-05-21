@@ -1,0 +1,7 @@
+<?php
+$metas = $this->getMetaTags();
+foreach ($metas as $meta):
+    if(isset($meta['data'])):?>
+<meta property="<?php echo trim($meta['value']) ?>" content="<?php echo trim($meta['data'])?>" />
+    <?php endif;?>
+<?php endforeach; ?>

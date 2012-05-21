@@ -1,0 +1,34 @@
+<div class="socnet recommendations">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div
+	class="fb-recommendations" data-site="<?php echo Mage::getBaseUrl()?>"
+	data-action="<?php $this->getActions()?>"
+	data-app-id="<?php echo $this->getAppId()?>"
+	data-width="<?php echo $this->getWidth()?>"
+	data-height="<?php echo $this->getHeight()?>"
+	data-header="<?php echo $this->getShowHeader()?>"
+	data-colorscheme="<?php echo $this->getScheme()?>"
+	data-linktarget="<?php echo $this->getLinkTarget()?>"
+	data-border-color="<?php echo $this->getBorderColor()?>"
+	data-font="<?php echo $this->getFont()?>"></div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:recommendations site="<?php echo Mage::getBaseUrl()?>"
+	action="<?php $this->getActions()?>"
+	app-id="<?php echo $this->getAppId()?>"
+	width="<?php echo $this->getWidth()?>"
+	height="<?php echo $this->getHeight()?>"
+	header="<?php echo $this->getShowHeader()?>"
+	colorscheme="<?php echo $this->getScheme()?>"
+	linktarget="<?php echo $this->getLinkTarget()?>"
+	border-color="<?php echo $this->getBorderColor()?>"
+	<?php if($this->getShowMaxAge()):?>
+	max_age="<?php echo $this->getMaxAge()?>" <?php endif;?>
+	<?php if($this->getShowReferer()):?>
+	ref="<?php echo $this->getRefererParameter()?>" <?php endif;?>
+	font="<?php echo $this->getFont()?>">
+</fb:recommendations>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <tabs>
+
+        <phitabs module="socnet" translate="label" >
+            <label>PHI</label>
+            <sort_order>9999</sort_order>
+        </phitabs>
+    </tabs>
+
+    <sections>
+        <phi_socnet module="socnet" translate="label" >
+            <class>separator-top</class>
+            <label>Social Networking</label>
+            <tab>phitabs</tab>
+            <sort_order>30</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <facebook translate="label" >
+                    <label>Facebook</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label" >
+                            <label>Enable Facebook</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <appid translate="label" >
+                            <label>App ID / API Key
+                            </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appid>
+                        <appsecret translate="label" >
+                            <label>App Secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appsecret>
+                        <locale translate="label" >
+                            <label>Locale</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socnet/system_config_source_facebook_locale</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </locale>
+                        <graph translate="label" >
+                            <label>Enable Graph API</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </graph>
+                        <appns translate="label" >
+                            <label>App Namespace</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appns>
+                        <support translate="label" >
+                            <label>Support Email</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </support>
+                        <mode translate="label" >
+                            <label>Display mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socnet/system_config_source_facebook_mode</source_model>
+                            <comment>This is the mode in which the plugins, when available,
+                                will be displayed. The recommended method is XFBML.</comment>
+                            <default>XFBML</default>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mode>
+                        <contact translate="label" >
+                            <label>Contact Email</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </contact>
+                        <logo_src translate="label,comment">
+						    <label>Logo Image</label>
+						    <frontend_type>image</frontend_type>
+						    <comment>This image will be used to display at facebook. 
+						        This does not has effect on the catalog or product 
+						        pages where the category image or the product 
+						        will be used. 
+						        Allowed file types: PNG, GIF, JPEG, JPG.</comment>
+						    <sort_order>80</sort_order>
+						    <backend_model>socnet/system_config_source_facebook_backend_logo</backend_model>
+						    <show_in_default>1</show_in_default>
+						    <show_in_website>1</show_in_website>
+						    <show_in_store>1</show_in_store>
+   					    </logo_src>
+                        
+                        <admins translate="label,comment" >
+                            <label>Administrators</label>
+                            <comment>Users Facebook ID that have administrative rights over this application.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </admins>
+                    </fields>
+                </facebook>
+                
+                <!-- 
+                <google translate="label">
+                    <label>Google</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label" >
+                            <label>Enable Google</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <appid translate="label" >
+                            <label>Client ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appid>
+                        <appsecret translate="label" >
+                            <label>Client secret</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </appsecret>
+                    </fields>
+                </google>
+                 -->
+            </groups>
+        </phi_socnet>
+    </sections>
+</config>

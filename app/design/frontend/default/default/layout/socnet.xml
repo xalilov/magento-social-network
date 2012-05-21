@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<layout version="0.1.0" >
+<!-- Social Plugins: Facebook -->
+
+<!-- List of available plugins types: -->
+<!--             socnet/view_facebook_plugin_likebutton" -->
+<!--             socnet/view_facebook_plugin_loginbutton" -->
+<!--             socnet/view_facebook_plugin_activityfeed" -->
+<!--             socnet/view_facebook_plugin_comments" -->
+<!--             socnet/view_facebook_plugin_facepile" -->
+<!--             socnet/view_facebook_plugin_likebox" -->
+<!--             socnet/view_facebook_plugin_livestream" -->
+<!--             socnet/view_facebook_plugin_recommendations" -->
+<!--             socnet/view_facebook_plugin_registration" -->
+<!--             socnet/view_facebook_plugin_sendbutton" -->
+<!--             socnet/view_facebook_plugin_subscribe_button" -->
+
+<!-- End of Social Plugins: Facebook -->
+    <!-- Usage example -->
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/phi/socnet.css</stylesheet></action>
+        </reference>
+    </default>
+    
+   	<customer_logged_out>
+        <reference name="top.container">
+            <block name="subscribe_wrapper" type="page/html_wrapper">
+                <block name="subscribe" after="global_notices"
+                   type="socnet/view_facebook_plugin_subscribebutton" />
+                
+            </block>
+            <block name="login"
+                       type="socnet/view_facebook_plugin_loginbutton" />
+            
+        </reference>
+   	</customer_logged_out>
+   	<customer_account_logoutsuccess>
+   	    <remove name="login" />
+    </customer_account_logoutsuccess>   	    
+   	
+    <cms_index_index>
+        <reference name="content">
+            <block name="socnet_facepile" before="-"
+                    type="socnet/view_facebook_plugin_facepile" />
+            <block name="comments" before="-"
+                       type="socnet/view_facebook_plugin_comments" />
+        </reference>
+    </cms_index_index>
+    
+    <customer_account_create>
+        <reference name="content" >
+                <block name="phi.facebook.registration" before="-"
+                   type="socnet/view_facebook_plugin_registration" />
+        </reference>
+    </customer_account_create>
+    
+    <catalog_category_view>
+        <reference name="content">
+               <block name="like_button" before="-"
+                      type="socnet/view_facebook_plugin_likebutton">
+               </block>
+               <block name="live_stream"
+                      type="socnet/view_facebook_plugin_livestream">
+               </block>
+        </reference>
+        <reference name="right">
+               <block name="activity_feed" before="-"
+                      type="socnet/view_facebook_plugin_recommendations">
+               </block>
+        </reference>
+    </catalog_category_view>
+    
+    <catalog_product_view>
+        <reference name="content">
+               <block name="like_button" before="-"
+                      type="socnet/view_facebook_plugin_likebutton">
+               </block>
+        </reference>
+    </catalog_product_view>
+    <!-- End of Usage example -->
+</layout>

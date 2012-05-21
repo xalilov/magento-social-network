@@ -1,0 +1,24 @@
+<div class="socnet live-stream">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div
+	class="fb-live-stream"
+	data-event-app-id="<?php echo $this->getAppId()?>"
+	data-width="<?php echo $this->getWidth();?>"
+	data-height="<?php echo $this->getHeight();?>"
+	data-xid="<?php echo $this->getXid();?>"
+	data-via-url="<?php echo $this->getViaUrl();?>"
+	data-always-post-to-friends="<?php echo $this->getAlwaysPostToFriends();?>"></div>
+</div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:live-stream event-app-id="<?php echo $this->getAppId()?>"
+	width="<?php echo $this->getWidth();?>"
+	height="<?php echo $this->getHeight();?>"
+	xid="<?php echo $this->getXid();?>"
+	via-url="<?php echo $this->getCurrentUrl();?>"
+	always-post-to-friends="<?php echo $this->getAlwaysPostToFriends();?>">
+</fb:live-stream>
+<?php else: ?>
+	<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>

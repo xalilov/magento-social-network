@@ -1,0 +1,13 @@
+<div class="socnet comments">
+    <?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+    <?php Mage::log("Html5 mode not yet implemented");?>
+    <?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+    <fb:comments href="<?php echo $this->getCurrentUrl()?>"
+    	num-posts="<?php echo $this->getNumPosts()?>"
+    	width="<?php echo $this->getWidth()?>"
+    	colorscheme="<?php echo $this->getScheme()?>">
+    </fb:comments>
+    <?php else: ?>
+    <?php Mage::log("Iframe mode not yet implemented");?>
+    <?php endif;?>
+</div>

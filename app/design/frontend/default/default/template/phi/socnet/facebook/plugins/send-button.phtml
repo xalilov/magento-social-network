@@ -1,0 +1,16 @@
+<div class="socnet send-button">
+<?php if($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_HTML5_MODE):?>
+<?php Mage::log("Html5 mode not yet implemented");?>
+<div class="fb-send"
+	data-href="<?php echo $this->getCurrentUrl()?>"
+	data-font="<?php echo $this->getFont()?>"
+	data-colorscheme="<?php echo $this->getScheme()?>"></div>
+<?php elseif ($this->getMode() == Phi_Socnet_Helper_Data::FACEBOOK_XFBML_MODE): ?>
+<fb:send data-href="<?php echo $this->getCurrentUrl()?>"
+	data-font="<?php echo $this->getFont()?>"
+	data-colorscheme="<?php echo $this->getSheme()?>">
+</fb:send>
+<?php else: ?>
+<?php Mage::log("Iframe mode not yet implemented");?>
+<?php endif;?>
+</div>
